@@ -15,4 +15,5 @@
         android:src="@drawable/mjew"
         android:layout_centerInParent="true" />
 
+
 </RelativeLayout>

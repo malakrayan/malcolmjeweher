@@ -13,16 +13,30 @@
         android:theme="@style/Theme.Malcolmjeweher"
         tools:targetApi="31">
         <activity
+            android:name=".product_main"
+            android:exported="false" />
+        <activity
+            android:name=".Main_view"
+            android:exported="false" />
+        <activity
+            android:name=".register"
+            android:exported="false" />
+        <activity
+            android:name=".item_jewelry"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".CartActivity"
             android:exported="false"
-
-            android:parentActivityName=".ProductDetailActivity">
+            android:parentActivityName=".product_main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ProductDetailActivity" />
+                android:value=".product_main" />
         </activity>
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".product_main"
             android:exported="false" />
         <activity
             android:name=".CustomerLogIn"

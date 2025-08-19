@@ -19,7 +19,15 @@ public class activity_login_sign_up extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_login_sign_up.this,CustomerLogIn.class);
+                Intent intent = new Intent(activity_login_sign_up.this, CustomerLogIn.class);
+                startActivity(intent);
+            }
+
+        });
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_login_sign_up.this, register.class);
                 startActivity(intent);
             }
         });

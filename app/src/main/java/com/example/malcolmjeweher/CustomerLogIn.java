@@ -35,7 +35,7 @@ public class CustomerLogIn extends AppCompatActivity {
                 } else {
                     if (customerId.equals("user123") && password.equals("pass123")) {
                         Toast.makeText(CustomerLogIn.this, "تم تسجيل الدخول بنجاح!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(CustomerLogIn.this, ProductDetailActivity.class);
+                        Intent intent = new Intent(CustomerLogIn.this, Main_view.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -48,7 +48,9 @@ public class CustomerLogIn extends AppCompatActivity {
         forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CustomerLogIn.this, "شاشة استعادة كلمة المرور قيد التطوير", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CustomerLogIn.this, ForgotPassword.class);
+                startActivity(intent);
+                finish();
 
             }
         });
