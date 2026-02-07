@@ -15,7 +15,7 @@ public class SavedPurchaseModel {
         this.imageResId = imageResId;
     }
 
-    // Getters
+
     public int getId() { return id; }
     public String getUserName() { return userName; }
     public String getItemName() { return itemName; }

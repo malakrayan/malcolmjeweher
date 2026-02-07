@@ -51,7 +51,7 @@ public class ProductAdapter extends BaseAdapter {
 
         final item_jewelry currentItem = jewelryitem.get(position);
 
-        // Find the views and set their content
+
         ImageView imageview_jewelry = convertView.findViewById(R.id.img_jewelry);
         TextView nameTextView = convertView.findViewById(R.id.tv_jewelry_name);
         TextView priceTextView = convertView.findViewById(R.id.price);

@@ -5,8 +5,8 @@ import com.example.malcolmjeweher.item_jewelry;
 public class jewelryitem extends item_jewelry {
         int id;
         String name;
-        String price; // اجعل السعر هو الثالث
-        int imageResId; // اجعل الصورة هي الرابعة
+        String price;
+        int imageResId;
 
         public jewelryitem(int id, String name, String price, int imageResId) {
             this.id = id;

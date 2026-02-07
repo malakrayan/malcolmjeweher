@@ -18,7 +18,7 @@ public class product_main extends AppCompatActivity {
 
         if (findViewById(R.id.fragment_container) != null && savedInstanceState == null) {
 
-            // Create a dummy product to demonstrate
+
             product dummyProduct = new product(
                     "Gold Designer Ring",
                     2500.00,

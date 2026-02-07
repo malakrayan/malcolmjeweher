@@ -1,12 +1,12 @@
 package com.example.malcolmjeweher;
 
-import android.content.Intent; // أضف هذا لاستخدام Intent
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu; // أضف هذا
-import android.view.MenuItem; // أضف هذا
+import android.view.Menu;
+import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.annotation.NonNull; // أضف هذا
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,10 +23,10 @@ public class Main_view extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        // 2. تفعيل التولبار كأكشن بار (Action Bar) للمنشور
+
         setSupportActionBar(toolbar);
 
-        // 3. --- هنا تضع الكود بالظبط لضمان ظهور الاسم ---
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Malcolm Jeweler");
         }
@@ -48,20 +48,20 @@ public class Main_view extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    // --- ضعي الكود الجديد هنا (بعد نهاية دالة onCreate) ---
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // هذه الدالة تربط ملف الـ XML الخاص بالمنيو بالجافا
+
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // هذه الدالة تحدد ماذا يحدث عند الضغط على أيقونة المنيو
+
         if (item.getItemId() == R.id.action_saved_list) {
-            // ننتقل هنا إلى صفحة المشتريات المحفوظة
+
             Intent intent = new Intent(Main_view.this, SavedPurchasesActivity.class);
             startActivity(intent);
             return true;

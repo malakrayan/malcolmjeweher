@@ -12,7 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-// 1. استيراد مكتبة Firebase
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +22,7 @@ public class register extends AppCompatActivity {
     EditText etName, etEmail, etPassword, etConfirmPassword;
     Button btnRegister;
 
-    // 2. تعريف متغير Firebase Auth
+
     private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -32,7 +32,7 @@ public class register extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
-        // 3. تهيئة Firebase Auth
+
         mAuth = FirebaseAuth.getInstance();
 
         etName = findViewById(R.id.etName);
@@ -56,7 +56,7 @@ public class register extends AppCompatActivity {
                 } else if (password.length() < 6) {
                     Toast.makeText(register.this, "كلمة المرور يجب أن تكون 6 أحرف على الأقل", Toast.LENGTH_SHORT).show();
                 } else {
-                    // 4. استدعاء دالة الإنشاء الفعلية
+
                     registerUserToFirebase(email, password);
                 }
             }
@@ -69,14 +69,11 @@ public class register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // 1. تسجيل الخروج فوراً لمنع التوجيه التلقائي للمنتجات
                             mAuth.signOut();
 
                             Toast.makeText(register.this, "تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول", Toast.LENGTH_LONG).show();
 
-                            // 2. الانتقال لصفحة تسجيل الدخول
                             Intent intent = new Intent(register.this, CustomerLogIn.class);
-                            // هذه الأسطر تضمن مسح الذاكرة وفتح صفحة الدخول بوضوح
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 

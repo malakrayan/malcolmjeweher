@@ -41,21 +41,21 @@ public class SavedPurchasesActivity extends AppCompatActivity {
         loadData();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-// تحديد أننا حالياً في صفحة المحفوظات
+
         bottomNavigationView.setSelectedItemId(R.id.nav_saved);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                // اذهب للصفحة الرئيسية
+
                  startActivity(new Intent(getApplicationContext(), Main_view.class));
                  finish();
                 return true;
             } else if (id == R.id.nav_saved) {
-                return true; // نحن هنا بالفعل
+                return true;
             } else if (id == R.id.nav_profile) {
-                // اذهب لصفحة البروفايل
+
                 return true;
             }
             return false;
@@ -68,7 +68,7 @@ public class SavedPurchasesActivity extends AppCompatActivity {
             Toast.makeText(this, "لا توجد بيانات محفوظة", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                // ترتيب الأعمدة في قاعدة البيانات الخاصة بك: 0=ID, 1=User, 2=Item, 3=Price, 4=Image
+
                 savedList.add(new SavedPurchaseModel(
                         cursor.getInt(0),
                         cursor.getString(1),

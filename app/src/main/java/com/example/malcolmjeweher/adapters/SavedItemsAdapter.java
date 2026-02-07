@@ -44,9 +44,8 @@ public class SavedItemsAdapter extends RecyclerView.Adapter<SavedItemsAdapter.Vi
         holder.image.setImageResource(item.getImageResId());
 
         holder.btnDelete.setOnClickListener(v -> {
-            // حذف من قاعدة البيانات
             db.deleteItem(item.getId());
-            // حذف من القائمة المعروضة وتحديث الشاشة
+
             list.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, list.size());
@@ -64,7 +63,7 @@ public class SavedItemsAdapter extends RecyclerView.Adapter<SavedItemsAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-                    // هذه الأسطر هي التي كانت ناقصة وتسبب الـ NullPointerException
+
                     userName = itemView.findViewById(R.id.tv_saved_user);
                     itemName = itemView.findViewById(R.id.tv_saved_item_name);
                     image = itemView.findViewById(R.id.saved_item_image);
