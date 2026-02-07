@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@android:color/white"
+    tools:context=".activity_login_sign_up">
+
+    <ImageView
+        android:id="@+id/logo_main"
+        android:layout_width="450dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/mjew"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#FFB300"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in"
+        android:textSize="18sp"
+        android:textColor="#FFB300"
+        android:backgroundTint="@android:color/white"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="16dp"
+        app:strokeColor="#FFB300"
+        app:strokeWidth="2dp"/>
+</LinearLayout>

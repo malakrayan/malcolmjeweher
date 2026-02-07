@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@android:color/white"
+tools:context=".product_main">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="0dp"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@android:color/white"
+    android:elevation="4dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:navigationIcon="@drawable/outline_arrow_back_24"
+    app:titleTextColor="@android:color/black">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Details"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
+
+</androidx.appcompat.widget.Toolbar>
+
+<ScrollView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/toolbar"
+    app:layout_constraintBottom_toTopOf="@id/bottom_action_bar"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/product_main_image"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:src="@drawable/gold"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="Product Image" />
+
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Gold Designer Ring"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/product_main_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAR 2,500.00"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFB300"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/product_name"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RatingBar
+            android:id="@+id/product_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.5"
+            android:isIndicator="true"
+            android:theme="@style/RatingBarColor"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/product_price"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/product_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/product_rating"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/product_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="This exquisite gold ring is crafted with precision and features a unique design, perfect for special occasions or as an everyday statement piece. Made from 24K pure gold. Weight: 5.2g."
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/product_description_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+<LinearLayout
+    android:id="@+id/bottom_action_bar"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:elevation="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <Button
+        android:id="@+id/btn_add_to_cart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ADD TO CART"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#FFB300"
+        android:layout_marginEnd="8dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btn_add_to_wishlist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ADD TO WISHLIST"
+        android:textColor="#FFB300"
+        android:backgroundTint="@android:color/white"
+        app:strokeColor="#FFB300"
+        app:strokeWidth="2dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"/>
+
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

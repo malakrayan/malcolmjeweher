@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562467288673",
+    "project_id": "malcolm-jewelry",
+    "storage_bucket": "malcolm-jewelry.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562467288673:android:2c9d1dd774dfd6a6dedc20",
+        "android_client_info": {
+          "package_name": "com.example.malcolmjeweher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz84PGrqW9LrQrZrkr45kSgUIk_Lfo15k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

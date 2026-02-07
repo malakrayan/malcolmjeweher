@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">malcolmjeweher</string>
+    <string name="log_in">LOG IN</string>
+
+    <style name="RatingBarColor" parent="Theme.AppCompat">
+        <item name="colorAccent">#FFB300</item>
+    </style>
+
+</resources>
