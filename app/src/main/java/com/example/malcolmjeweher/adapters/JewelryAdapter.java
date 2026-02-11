@@ -33,7 +33,6 @@ public class JewelryAdapter extends RecyclerView.Adapter<JewelryAdapter.JewelryV
     @NonNull
     @Override
     public JewelryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_jewelry, parent, false);
         return new JewelryViewHolder(view);
     }
@@ -41,7 +40,6 @@ public class JewelryAdapter extends RecyclerView.Adapter<JewelryAdapter.JewelryV
     @Override
     public void onBindViewHolder(@NonNull JewelryViewHolder holder, int position) {
         jewelryitem item = jewelryList.get(position);
-
 
         if (item.getName() != null) {
             holder.name.setText(item.getName());
@@ -56,23 +54,18 @@ public class JewelryAdapter extends RecyclerView.Adapter<JewelryAdapter.JewelryV
             Context context = v.getContext();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("حفظ القطعة باسمك");
-
             final EditText input = new EditText(context);
             input.setHint("اكتب اسمك هنا...");
             builder.setView(input);
-
             builder.setPositiveButton("حفظ", (dialog, which) -> {
                 String userName = input.getText().toString().trim();
                 if (!userName.isEmpty()) {
                     DatabaseHelper db = new DatabaseHelper(context);
                     boolean success = db.insertData(userName, item.getName(), item.getPrice(), item.getImageResId());
-
                     if (success) {
                         holder.starIcon.setImageResource(android.R.drawable.btn_star_big_on);
                         Toast.makeText(context, "تم الحفظ بنجاح!", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(context, "الرجاء كتابة اسم", Toast.LENGTH_SHORT).show();
                 }
             });
             builder.setNegativeButton("إلغاء", null);
@@ -84,9 +77,8 @@ public class JewelryAdapter extends RecyclerView.Adapter<JewelryAdapter.JewelryV
             Context context = v.getContext();
             Intent intent = new Intent(context, product_main.class);
 
-            intent.putExtra("PRODUCT_NAME", item.getName());
-            intent.putExtra("PRODUCT_PRICE", item.getPrice());
-            intent.putExtra("PRODUCT_IMAGE", item.getImageResId());
+
+            intent.putExtra("SELECTED_ITEM", item);
 
             context.startActivity(intent);
         });
@@ -96,7 +88,6 @@ public class JewelryAdapter extends RecyclerView.Adapter<JewelryAdapter.JewelryV
     public int getItemCount() {
         return jewelryList != null ? jewelryList.size() : 0;
     }
-
 
     public static class JewelryViewHolder extends RecyclerView.ViewHolder {
         ImageView image, starIcon;

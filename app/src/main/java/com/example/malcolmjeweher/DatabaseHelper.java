@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "JewelryStore.db";
     private static final String TABLE_NAME = "saved_purchases";
 
-    // أعمدة الجدول
+
     public static final String COL_ID = "ID";
     public static final String COL_USER_NAME = "USER_NAME";
     public static final String COL_ITEM_NAME = "ITEM_NAME";

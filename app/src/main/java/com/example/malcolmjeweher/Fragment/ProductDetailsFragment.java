@@ -1,6 +1,6 @@
 package com.example.malcolmjeweher.Fragment;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,73 +13,119 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.malcolmjeweher.DatabaseHelper;
 import com.example.malcolmjeweher.R;
 import com.example.malcolmjeweher.models.product;
-import com.example.malcolmjeweher.CartActivity;
+
+import org.json.JSONException;
 
 public class ProductDetailsFragment extends Fragment {
 
-    private static final String ARG_PRODUCT = "product";
-    private product product;
+    private product currentProduct;
+    private TextView productName, productPrice, productDescription;
+    private ImageView productImage;
+    private RatingBar productRating;
+    private Button btnAddToCart;
 
-    public static ProductDetailsFragment newInstance(product product) {
+    public static ProductDetailsFragment newInstance(product p) {
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         Bundle args = new Bundle();
-        args.putString("name", product.getName());
-        args.putDouble("price", product.getPrice());
-        args.putString("description", product.getDescription());
-        args.putInt("imageResId", product.getImageResourceId());
-        args.putFloat("rating", product.getRating());
+        args.putSerializable("selected_product", p);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            String name = getArguments().getString("name");
-            double price = getArguments().getDouble("price");
-            String description = getArguments().getString("description");
-            int imageResId = getArguments().getInt("imageResId");
-            float rating = getArguments().getFloat("rating");
-            product = new product(name, price, description, imageResId, rating);
+            currentProduct = (product) getArguments().getSerializable("selected_product");
         }
+
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_product_detail, container, false);
 
-        ImageView productMainImage = view.findViewById(R.id.product_main_image);
-        TextView productName = view.findViewById(R.id.product_name);
-        TextView productPrice = view.findViewById(R.id.product_price);
-        RatingBar productRating = view.findViewById(R.id.product_rating);
-        TextView productDescription = view.findViewById(R.id.product_description);
-        Button btnAddToCart = view.findViewById(R.id.btn_add_to_cart);
-        Button btnAddToWishlist = view.findViewById(R.id.btn_add_to_wishlist);
-
-        if (product != null) {
-            productMainImage.setImageResource(product.getImageResourceId());
-            productName.setText(product.getName());
-            productPrice.setText("SAR " + String.format("%.2f", product.getPrice()));
-            productRating.setRating(product.getRating());
-            productDescription.setText(product.getDescription());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            toolbar.setNavigationOnClickListener(v -> {
+                if (getActivity() != null) {
+                    getActivity().onBackPressed();
+                }
+            });
         }
 
-        btnAddToCart.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Added to cart", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), CartActivity.class);
-            startActivity(intent);
-        });
+        productImage = view.findViewById(R.id.product_main_image);
+        productName = view.findViewById(R.id.product_name);
+        productPrice = view.findViewById(R.id.product_price);
+        productDescription = view.findViewById(R.id.product_description);
+        productRating = view.findViewById(R.id.product_rating);
+        btnAddToCart = view.findViewById(R.id.btn_add_to_cart);
+        Button btnAddToWishlist = view.findViewById(R.id.btn_add_to_wishlist);
 
-        btnAddToWishlist.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Added to wishlist", Toast.LENGTH_SHORT).show();
-        });
+        if (currentProduct != null) {
+            productName.setText(currentProduct.getName());
+            productPrice.setText("SAR " + currentProduct.getPrice());
+            productImage.setImageResource(currentProduct.getImageResourceId());
+            productRating.setRating(currentProduct.getRating());
+            productDescription.setText("جاري جلب التفاصيل...");
+
+            fetchProductDetailsFromAPI(currentProduct.getId());
+        }
+
+        if (btnAddToCart != null) {
+            btnAddToCart.setOnClickListener(v -> addToCart());
+        }
 
         return view;
+
+    }
+
+    private void fetchProductDetailsFromAPI(int id) {
+
+        String url = "https://fakestoreapi.com/products/" + id;
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        String description = response.getString("description");
+                        productDescription.setText(description);
+                    } catch (JSONException e) {
+                        productDescription.setText(currentProduct.getDescription());
+                    }
+                },
+                error -> {
+
+                    productDescription.setText(currentProduct.getDescription());
+                }
+        );
+        Volley.newRequestQueue(getContext()).add(request);
+    }
+
+    private void addToCart() {
+        if (currentProduct != null) {
+            DatabaseHelper db = new DatabaseHelper(getContext());
+            boolean success = db.insertData(
+                    "User_Default",
+                    currentProduct.getName(),
+                    currentProduct.getPrice(),
+                    currentProduct.getImageResourceId()
+            );
+
+            if (success) {
+                Toast.makeText(getContext(), "تمت إضافة " + currentProduct.getName() + " إلى السلة! 💍", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "فشلت عملية الإضافة", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
